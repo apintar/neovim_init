@@ -80,3 +80,7 @@ let g:slime_python_ipython = 1
 let g:tex_flavor = 'latex'
 let g:vimtex_compiler_progname = 'nvr'
 
+" Configure vimtex to fold code
+let g:vimtex_fold_enabled=1
+
+
