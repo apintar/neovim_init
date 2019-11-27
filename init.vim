@@ -76,6 +76,7 @@ let g:slime_target = "neovim"
 let g:slime_python_ipython = 1
 
 " Configure vimtex to compile tex documents
+" Make sure nvr is in your path
 let g:tex_flavor = 'latex'
-let g:vimtex_compiler_progname = '/usr/local/bin/nvr'
+let g:vimtex_compiler_progname = 'nvr'
 
