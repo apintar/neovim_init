@@ -13,6 +13,8 @@ Plug 'gaalcaras/ncm-R'
 " better Rnoweb support (LaTeX completion)
 Plug 'lervag/vimtex'
 
+Plug 'davidhalter/jedi-vim'
+
 " NOTE: you need to install completion sources to get completions. Check
 " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 Plug 'ncm2/ncm2-bufword'
@@ -72,7 +74,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " vim_slime configuration
-let g:slime_target = "neovim"
+let g:slime_target = "tmux"
 let g:slime_python_ipython = 1
 
 " Configure vimtex to compile tex documents
