@@ -13,13 +13,17 @@ Plug 'gaalcaras/ncm-R'
 " better Rnoweb support (LaTeX completion)
 Plug 'lervag/vimtex'
 
+" for autocompletion and other good things with python code
 Plug 'davidhalter/jedi-vim'
+Plug 'ncm2/ncm2-jedi' 
+
+"better indenting for python
+Plug 'Vimjas/vim-python-pep8-indent'  
 
 " NOTE: you need to install completion sources to get completions. Check
 " our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi' " for python completion
 
 " color themes
 Plug 'phanviet/vim-monokai-pro'
@@ -49,8 +53,20 @@ set textwidth=70
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
 let g:pandoc#syntax#conceal#use=0
+
 let R_assign=3
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" tab to use ncm2 to select
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " configure ncm2 autocompletion to work with vimtex
 au User Ncm2Plugin call ncm2#register_source({
@@ -65,13 +81,10 @@ au User Ncm2Plugin call ncm2#register_source({
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
 
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-" tab to use ncm2 to select
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Make NCM2 faster
+let ncm2#popup_delay = 5
+let ncm2#complete_length = [[1,1]]
+let g:ncm2#matcher = 'substrfuzzy'
 
 " vim_slime configuration
 let g:slime_target = "tmux"
@@ -85,4 +98,16 @@ let g:vimtex_compiler_progname = 'nvr'
 " Configure vimtex to fold code
 let g:vimtex_fold_enabled=1
 
+" Disable Jedi-vim autocompletion and enable call-signatures options
+" NCM2 is used for auocompletion instead
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+
+" setup spell checking
+set spelllang=en_us
 
