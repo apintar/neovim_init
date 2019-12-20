@@ -50,11 +50,14 @@ call plug#end()
 colorscheme minimalist
 set number
 set textwidth=70
+set fo-=t
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
 let g:pandoc#syntax#conceal#use=0
+let g:pandoc#formatting#mode='h'
+let g:pandoc#formatting#textwidth=70
 
 let R_assign=3
 
