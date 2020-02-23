@@ -47,7 +47,8 @@ Plug 'eigenfoo/stan-vim'
 " Initialize plugin system
 call plug#end()
 
-colorscheme minimalist
+set termguicolors
+colorscheme gruvbox
 set number
 set textwidth=70
 set fo-=t
